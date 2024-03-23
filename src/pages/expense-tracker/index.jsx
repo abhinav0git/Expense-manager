@@ -101,7 +101,7 @@ export const ExpenseTracker = () => {
         {profilePhoto && (
           <div className="profile">
             {" "}
-            <img className="profile-photo" src={profilePhoto} />
+            <img className="profile-photo" alt="pfp" src={profilePhoto} />
             <button className="sign-out-button" onClick={signUserOut}>
               Sign Out
             </button>
