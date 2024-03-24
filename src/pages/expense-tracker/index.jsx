@@ -47,6 +47,7 @@ export const ExpenseTracker = () => {
       <div className="expense-tracker">
         <div className="container">
           <h1>{name}'s Expense Tracker</h1>
+
           {profilePhoto && (
           <div className="profile">
             {" "}
@@ -57,7 +58,7 @@ export const ExpenseTracker = () => {
           </div>
         )}
           <div className="balance">
-            <h3> Your Balance </h3>
+            <h3>Total Balance</h3>
             {balance >= 0 ? <h2> Rs.{balance}</h2> : <h2> -Rs.{balance * -1}</h2>}
           </div>
           <div className="summary">
@@ -71,6 +72,7 @@ export const ExpenseTracker = () => {
             </div>
           </div>
           <form className="add-transaction" onSubmit={onSubmit}>
+            <div className="input-area">
             <input
               type="text"
               placeholder="Description"
@@ -85,7 +87,9 @@ export const ExpenseTracker = () => {
               required
               onChange={(e) => setTransactionAmount(e.target.value)}
             />
+            </div>
 
+            <div className="radio-area">
             <input
               type="radio"
               id="expense"
@@ -103,7 +107,7 @@ export const ExpenseTracker = () => {
               onChange={(e) => setTransactionType(e.target.value)}
             />
             <label htmlFor="income"> Income </label>
-
+            </div>
             <button type="submit"> Add Transaction </button>
           </form>
         </div>
