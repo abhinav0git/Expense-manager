@@ -17,57 +17,103 @@ export const useGetTransaction = () => {
     expenses: 0.0,
   });
 
-  const transactionCollectionRef = collection(db, "transactions");
+  const transactionCollectionRef = collection(db, "transaction");
+  console.log(transactions);
   const { userID } = useGetUserInfo();
 
-  const getTransactions = async () => {
-    let unsubscribe;
-    try {
-      const queryTransactions = query(
-        transactionCollectionRef,
-        where("userID", "==", userID),
-        orderBy("createdAt")
-      );
+  // const getTransactions = async () => {
+  //   let unsubscribe;
+  //   try {
+  //     const queryTransactions = query(
+  //       transactionCollectionRef,
+  //       where("userID", "==", userID),
+  //       orderBy("createdAt")
+  //     );
 
-      unsubscribe = onSnapshot(queryTransactions, (snapshot) => {
-        let docs = [];
-        let totalIncome = 0;
-        let totalExpenses = 0;
+  //     unsubscribe = onSnapshot(queryTransactions, (snapshot) => {
+  //       let docs = [];
+  //       let totalIncome = 0;
+  //       let totalExpenses = 0;
 
-        snapshot.forEach((doc) => {
-          const data = doc.data();
-          const id = doc.id;
+  //       snapshot.forEach((doc) => {
+  //         const data = doc.data();
+  //         const id = doc.id;
 
-          docs.push({ ...data, id });
+  //         docs.push({ ...data, id });
 
-          if (data.transactionType === "expense") {
-            totalExpenses += Number(data.transactionAmount);
-          } else {
-            totalIncome += Number(data.transactionAmount);
-          }
+  //         if (data.transactionType === "expense") {
+  //           totalExpenses += Number(data.transactionAmount);
+  //         } else {
+  //           totalIncome += Number(data.transactionAmount);
+  //         }
 
-          console.log(totalExpenses, totalIncome);
-        });
+  //         console.log(totalExpenses, totalIncome);
+  //       });
 
-        setTransactions(docs);
+  //       setTransactions(docs);
 
-        let balance = totalIncome - totalExpenses;
-        setTransactionTotals({
-          balance,
-          expenses: totalExpenses,
-          income: totalIncome,
-        });
-      });
-    } catch (err) {
-      console.error(err);
-    }
+  //       let balance = totalIncome - totalExpenses;
+  //       setTransactionTotals({
+  //         balance,
+  //         expenses: totalExpenses,
+  //         income: totalIncome,
+  //       });
+  //     });
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
 
-    return () => unsubscribe();
-  };
+  //   return () => unsubscribe();
+  // };
 
   useEffect(() => {
+    const getTransactions = async () => {
+      let unsubscribe;
+      try {
+        const queryTransactions = query(
+          transactionCollectionRef,
+          where("userID", "==", userID),
+          orderBy("createdAt")
+        );
+            // console.log(queryTransactions);
+        unsubscribe = onSnapshot(queryTransactions, (snapshot) => {
+          let docs = [];
+          let totalIncome = 0;
+          let totalExpenses = 0;
+          // console.log(snapshot);
+          snapshot.forEach((doc) => {
+            const data = doc.data();
+            const id = doc.id;
+  
+            docs.push({ ...data, id });
+  
+            if (data.transactionType === "expense") {
+              totalExpenses += Number(data.transactionAmount);
+            } else {
+              totalIncome += Number(data.transactionAmount);
+            }
+  
+            // console.log(totalExpenses, totalIncome);
+          });
+  
+          setTransactions(docs);
+  
+          let balance = totalIncome - totalExpenses;
+          setTransactionTotals({
+            balance,
+            expenses: totalExpenses,
+            income: totalIncome,
+          });
+        });
+      } catch (err) {
+        console.error(err);
+      }
+  
+      return () => unsubscribe();
+    };
     getTransactions();
-  }, []);
 
+  }, []);
+  
   return { transactions, transactionTotals };
 };
