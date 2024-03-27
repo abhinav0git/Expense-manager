@@ -10,7 +10,7 @@ import { auth } from "../../config/fire-config";
 
 export const ExpenseTracker = () => {
   const { addTransaction } = useAddTransaction();
-  const { transaction, transactionTotals } = useGetTransaction();
+  const { transactions, transactionTotals } = useGetTransaction();
   const { name, profilePhoto } = useGetUserInfo();
   const navigate = useNavigate();
 
@@ -27,7 +27,6 @@ export const ExpenseTracker = () => {
       transactionAmount,
       transactionType,
     });
-
     setDescription("");
     setTransactionAmount("");
   };
@@ -115,9 +114,9 @@ export const ExpenseTracker = () => {
       <div className="transactions">
         <h2 className="title-trans"> Transactions</h2>
         <ul>
-          {transaction?.map((transaction) => {
-            const { description, transactionAmount, transactionType } =
-              transaction;
+          {
+          transactions?.map((transaction) => {
+            const { description, transactionAmount, transactionType } = transaction;
             return (
               <li>
                 <h4> {description} </h4>
@@ -133,8 +132,8 @@ export const ExpenseTracker = () => {
                   </label>
                 </p>
               </li>
-            );
-          })}
+            );})
+            }
         </ul>
       </div>
     </>
