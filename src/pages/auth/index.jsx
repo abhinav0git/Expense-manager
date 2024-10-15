@@ -35,6 +35,7 @@ export const Auth = () => {
 
   return (
     <div className="login-page">
+      <div className="box">
       <div className="login-container">
         <h2 className="login-title">Welcome</h2>
         <p className="login-text">Sign In with Google to continue</p>
@@ -47,6 +48,10 @@ export const Auth = () => {
             <span className="gsi-material-button-contents">Sign In</span>
           </div>
         </button>
+      </div>
+      <div className="heroImg">
+        <img src="https://img.freepik.com/premium-vector/investment-fund-abstract-concept-vector-illustration_107173-33302.jpg?w=1380" alt="" srcset="" />
+      </div>
       </div>
     </div>
   );
