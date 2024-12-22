@@ -4,6 +4,8 @@
 /node_modules
 /.pnp
 .pnp.js
+/config
+fire-config.js
 
 # testing
 /coverage
