@@ -4,9 +4,9 @@ import { useAddTransaction } from "../../hooks/useAddTransaction";
 import { useGetTransaction } from "../../hooks/useGetTransaction";
 import { useGetUserInfo } from "../../hooks/useGetUserInfo";
 import { useNavigate } from "react-router-dom";
-
-import "./styles.css";
 import { auth } from "../../config/fire-config";
+import "./styles.css";
+import { LogOut } from "lucide-react";
 
 export const ExpenseTracker = () => {
   const { addTransaction } = useAddTransaction();
@@ -42,100 +42,105 @@ export const ExpenseTracker = () => {
   };
 
   return (
-    <>
-      <div className="expense-tracker">
-        <div className="container">
-          <h1>{name}'s Expense Tracker</h1>
+    <div className="expense-tracker">
 
+      <div className="header-container">
+        <text>{name}'s Wallet🪙</text>
+        <button className="sign-out-button" onClick={signUserOut}>
+          <LogOut />
+        </button>
+      </div>
+
+      <main>
+        {/* total dp and balance */}
+        <section className="balance">
           {profilePhoto && (
-          <div className="profile">
-            {" "}
-            <img className="profile-photo" alt="pfp" src={profilePhoto} />
-            <button className="sign-out-button" onClick={signUserOut}>
-              Sign Out
-            </button>
-          </div>
-        )}
-          <div className="balance">
-            <h3>Total Balance</h3>
-            {balance >= 0 ? <h2> Rs.{balance}</h2> : <h2> -Rs.{balance * -1}</h2>}
-          </div>
-          <div className="summary">
-            <div className="income">
-              <h4>Income</h4>
-              <p>Rs.{income}</p>
+            <div className="profile">
+              <img className="profile-photo" alt="Profile" src={profilePhoto} />
             </div>
-            <div className="expenses">
-              <h4>Expenses</h4>
-              <p>Rs.{expenses}</p>
-            </div>
+          )}
+          <h3>Current Balance</h3>
+          <h2>{balance >= 0 ? `₹${balance}` : `-₹${Math.abs(balance)}`}</h2>
+        </section>
+
+        {/* income and expenses */}
+        <section className="summary">
+          <div className="income">
+            <h4>Income</h4>
+            <p>₹{income}</p>
           </div>
-          <form className="add-transaction" onSubmit={onSubmit}>
-            <div className="input-area">
-            <input
-              type="text"
-              placeholder="Description"
-              value={description}
-              required
-              onChange={(e) => setDescription(e.target.value)}
-            />
+          <div className="expenses">
+            <h4>Expenses</h4>
+            <p>₹{expenses}</p>
+          </div>
+        </section>
+
+        {/* add transaction form */}
+        <form className="add-transaction" onSubmit={onSubmit}>
+          <div className="input-area">
             <input
               type="number"
-              placeholder="Amount"
+              placeholder="₹0.00"
               value={transactionAmount}
               required
               onChange={(e) => setTransactionAmount(e.target.value)}
             />
+            <div />
+            <div className="description">
+              <input
+                type="text"
+                placeholder="about"
+                value={description}
+                required
+                onChange={(e) => setDescription(e.target.value)}
+              />
             </div>
+          </div>
 
-            <div className="radio-area">
-            <input
-              type="radio"
-              id="expense"
-              value="expense"
-              checked={transactionType === "expense"}
-              onChange={(e) => setTransactionType(e.target.value)}
-            />
+          <div className="radio-area">
+            <label>
+              <input
+                type="radio"
+                value="expense"
+                checked={transactionType === "expense"}
+                onChange={(e) => setTransactionType(e.target.value)}
+              />
+              Expense
+            </label>
+            <label>
+              <input
+                type="radio"
+                value="income"
+                checked={transactionType === "income"}
+                onChange={(e) => setTransactionType(e.target.value)}
+              />
+              Income
+            </label>
+          </div>
+          <button type="submit">Add Transaction</button>
+        </form>
 
-            <label htmlFor="expense"> Expense </label>
-            <input
-              type="radio"
-              id="income"
-              value="income"
-              checked={transactionType === "income"}
-              onChange={(e) => setTransactionType(e.target.value)}
-            />
-            <label htmlFor="income"> Income </label>
-            </div>
-            <button type="submit"> Add Transaction </button>
-          </form>
-        </div>
-      </div>
-      <div className="transactions">
-        <h2 className="title-trans"> Transactions</h2>
-        <ul>
-          {
-          transactions?.map((transaction) => {
-            const { description, transactionAmount, transactionType } = transaction;
-            return (
-              <li>
-                <h4> {description} </h4>
-                <p>
-                  Rs.{transactionAmount} • {" "}
-                  <label
-                    style={{
-                      color: transactionType === "expense" ? "red" : "green",
-                    }}
-                  >
-                    {" "}
-                    {transactionType}{" "}
-                  </label>
-                </p>
-              </li>
-            );})
-            }
-        </ul>
-      </div>
-    </>
+        <section className="transactions">
+          <h2>Transactions</h2>
+          <ul>
+            {transactions?.map((transaction, index) => {
+              const { description, transactionAmount, transactionType } = transaction;
+              return (
+                <li key={index}>
+                  <h4>{description}</h4>
+                  <p>
+                    ₹{transactionAmount} •{" "}
+                    <span style={{ color: transactionType === "expense" ? "#e74c3c" : "#27ae60" }}>
+                      {transactionType}
+                    </span>
+                  </p>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      </main>
+    </div>
   );
 };
+

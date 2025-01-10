@@ -5,9 +5,15 @@ export const useGetUserInfo = () => {
     if (storedAuthInfo) {
         const parsedAuthInfo = JSON.parse(storedAuthInfo);
         name = parsedAuthInfo.name;
-        profilePhoto = parsedAuthInfo.profilePhoto;
         userID = parsedAuthInfo.userID;
         isAuth = parsedAuthInfo.isAuth;
+        try {
+            profilePhoto = parsedAuthInfo.profilePhoto;
+            profilePhoto = profilePhoto ? profilePhoto : 'path/to/default.svg';
+        } catch (err) {
+            console.error("Error parsing profile photo", err);
+            console.error(profilePhoto);
+        }
     }
 
     return {name, profilePhoto, userID, isAuth};
