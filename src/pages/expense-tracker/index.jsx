@@ -7,8 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { auth } from "../../config/fire-config";
 import "./styles.css";
 import { LogOut } from "lucide-react";
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
+import { Stack, Button } from '@mui/material';
 
 export const ExpenseTracker = () => {
   const { addTransaction } = useAddTransaction();
