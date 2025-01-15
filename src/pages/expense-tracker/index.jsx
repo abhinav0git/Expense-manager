@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { auth } from "../../config/fire-config";
 import "./styles.css";
 import { LogOut } from "lucide-react";
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
 export const ExpenseTracker = () => {
   const { addTransaction } = useAddTransaction();
@@ -15,8 +17,13 @@ export const ExpenseTracker = () => {
   const navigate = useNavigate();
 
   const [description, setDescription] = useState("");
-  const [transactionAmount, setTransactionAmount] = useState(0);
+  const [transactionAmount, setTransactionAmount] = useState(null);
   const [transactionType, setTransactionType] = useState("expense");
+  const [showTransactions, setShowTransactions] = useState(false);
+
+  const toggleTransactions = () => {
+    setShowTransactions((prev) => !prev);
+  };
 
   const { balance, income, expenses } = transactionTotals;
 
@@ -85,16 +92,13 @@ export const ExpenseTracker = () => {
               required
               onChange={(e) => setTransactionAmount(e.target.value)}
             />
-            <div />
-            <div className="description">
-              <input
-                type="text"
-                placeholder="about"
-                value={description}
-                required
-                onChange={(e) => setDescription(e.target.value)}
-              />
-            </div>
+            <input
+              type="text"
+              placeholder="description"
+              value={description}
+              required
+              onChange={(e) => setDescription(e.target.value)}
+            />
           </div>
 
           <div className="radio-area">
@@ -117,28 +121,35 @@ export const ExpenseTracker = () => {
               Income
             </label>
           </div>
-          <button type="submit">Add Transaction</button>
+          <Stack spacing={2} direction="row">
+            <Button type="submit" variant="contained">Add Transaction</Button>
+            <Button onClick={toggleTransactions}>
+              {showTransactions ? "Hide Transactions" : "Show Transactions"}
+            </Button>
+          </Stack>
         </form>
 
-        <section className="transactions">
-          <h2>Transactions</h2>
-          <ul>
-            {transactions?.map((transaction, index) => {
-              const { description, transactionAmount, transactionType } = transaction;
-              return (
-                <li key={index}>
-                  <h4>{description}</h4>
-                  <p>
-                    ₹{transactionAmount} •{" "}
-                    <span style={{ color: transactionType === "expense" ? "#e74c3c" : "#27ae60" }}>
-                      {transactionType}
-                    </span>
-                  </p>
-                </li>
-              );
-            })}
-          </ul>
-        </section>
+        {showTransactions && (
+          <section className="transactions">
+            <h2>Transactions</h2>
+            <ul>
+              {transactions?.map((transaction, index) => {
+                const { description, transactionAmount, transactionType } = transaction;
+                return (
+                  <li key={index}>
+                    <h4>{description}</h4>
+                    <p>
+                      ₹{transactionAmount}•{" "}
+                      <span style={{ color: transactionType === "expense" ? "#e74c3c" : "#27ae60" }}>
+                        {transactionType}
+                      </span>
+                    </p>
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
+        )}
       </main>
     </div>
   );
