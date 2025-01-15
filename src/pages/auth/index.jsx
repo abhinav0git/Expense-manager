@@ -4,6 +4,7 @@ import { useNavigate, Navigate } from "react-router-dom";
 import { useGetUserInfo } from "../../hooks/useGetUserInfo";
 import "./styles.css";
 import { ReactComponent as GoogleIcon } from "../../assets/icons-google.svg";
+import { Mail } from "lucide-react";
 
 export const Auth = () => {
   const navigate = useNavigate();
@@ -36,22 +37,19 @@ export const Auth = () => {
   return (
     <div className="login-page">
       <div className="box">
-      <div className="login-container">
-        <h2 className="login-title">Welcome</h2>
-        <p className="login-text">Sign In with Google to continue</p>
-        <button className="gsi-material-button" onClick={signInWithGoogle}>
-          <div className="gsi-material-button-state"></div>
-          <div className="gsi-material-button-content-wrapper">
-            <div className="gsi-material-button-icon">
-              <GoogleIcon className="thelogo"/>
+        <div className="login-container">
+          <h2 className="login-title">Welcome</h2>
+          <p className="login-text">Sign-in with Google to continue</p>
+          <button className="gsi-material-button" onClick={signInWithGoogle}>
+            <div className="gsi-material-button-state"></div>
+            <div className="gsi-material-button-content-wrapper">
+              <div className="gsi-material-button-icon">
+                <Mail className="thelogo" />
+              </div>
+              <span className="gsi-material-button-contents">Sign In</span>
             </div>
-            <span className="gsi-material-button-contents">Sign In</span>
-          </div>
-        </button>
-      </div>
-      <div className="heroImg">
-        <img src="https://img.freepik.com/premium-vector/investment-fund-abstract-concept-vector-illustration_107173-33302.jpg?w=1380" alt="" srcset="" />
-      </div>
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,3 @@
-/* styles.css */
-
 .login-page {
   display: flex;
   justify-content: center;
@@ -8,8 +6,8 @@
   background-color: #120925;
 }
 
-.box{
-  display:flex;
+.box {
+  display: flex;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
@@ -21,19 +19,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* padding: 2rem; */
   padding: 4rem 2rem;
-  /* padding-top: 4rem;
-  padding-bottom: 4rem; */
   background-color: #ffffff;
-}
-
-.heroImg
-{
-  display: flex;
-  flex-direction: row;
-  height: 30vh;
-  width: auto;
 }
 
 .login-title {
@@ -83,7 +70,7 @@
 }
 
 .thelogo {
-  width: 100%;  /* adjust as needed */
+  width: 100%; /* adjust as needed */
   height: auto; /* adjust as needed */
   max-width: 18px; /* adjust as needed */
   max-height: 20px; /* adjust as needed */
