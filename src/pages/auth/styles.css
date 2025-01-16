@@ -1,9 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap");
+
 .login-page {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #120925;
+  background-color: #f9fafa;
 }
 
 .box {
@@ -19,21 +21,43 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 4rem 2rem;
+  padding: 1rem 2rem;
   background-color: #ffffff;
+  box-shadow: 2px 6px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 5%;
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .login-title {
-  font-size: 2rem;
+  font-size: 2.1rem;
+  font-family: "Lexend Deca", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
   color: #333333;
-  margin-bottom: 1rem;
+  margin-top: 0.6rem;
+  margin-bottom: 0.6rem;
 }
 
 .login-text {
   font-size: 1rem;
+  font-family: "Lexend Deca", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
   color: #666666;
-  margin-bottom: 2rem;
   text-align: center;
+  margin-top: auto;
 }
 
 .gsi-material-button {
@@ -67,12 +91,15 @@
 
 .gsi-material-button-contents {
   font-size: 1rem;
+  font-family: "Lexend Deca", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 
 .thelogo {
-  width: 100%; /* adjust as needed */
-  height: auto; /* adjust as needed */
-  max-width: 18px; /* adjust as needed */
-  max-height: 20px; /* adjust as needed */
+  width: 100%;
+  height: auto;
+  max-width: 18px;
+  max-height: 20px;
   vertical-align: middle;
 }

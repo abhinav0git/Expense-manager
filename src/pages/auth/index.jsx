@@ -35,21 +35,21 @@ export const Auth = () => {
 
   return (
     <div className="login-page">
-      <div className="box">
-        <div className="login-container">
-          <h2 className="login-title">Welcome</h2>
-          <p className="login-text">Sign-in with Google to continue</p>
-          <button className="gsi-material-button" onClick={signInWithGoogle}>
-            <div className="gsi-material-button-state"></div>
-            <div className="gsi-material-button-content-wrapper">
-              <div className="gsi-material-button-icon">
-                <Mail className="thelogo" />
-              </div>
-              <span className="gsi-material-button-contents">Sign In</span>
+
+      <div className="login-container">
+        <h2 className="login-title">Welcome</h2>
+        <p className="login-text">Sign-in with Google to continue</p>
+        <button className="gsi-material-button" onClick={signInWithGoogle}>
+          <div className="gsi-material-button-state"></div>
+          <div className="gsi-material-button-content-wrapper">
+            <div className="gsi-material-button-icon">
+              <Mail className="thelogo" />
             </div>
-          </button>
-        </div>
+            <span className="gsi-material-button-contents">Sign In</span>
+          </div>
+        </button>
       </div>
+
     </div>
   );
 };
