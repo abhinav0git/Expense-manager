@@ -3,7 +3,6 @@ import { signInWithPopup } from "firebase/auth";
 import { useNavigate, Navigate } from "react-router-dom";
 import { useGetUserInfo } from "../../hooks/useGetUserInfo";
 import "./styles.css";
-import { ReactComponent as GoogleIcon } from "../../assets/icons-google.svg";
 import { Mail } from "lucide-react";
 
 export const Auth = () => {

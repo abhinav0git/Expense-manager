@@ -1,11 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  query,
-  collection,
-  where,
-  orderBy,
-  onSnapshot,
-} from "firebase/firestore";
+import {query,collection,where,orderBy,onSnapshot} from "firebase/firestore";
 import { db } from "../config/fire-config";
 import { useGetUserInfo } from "./useGetUserInfo";
 
@@ -62,8 +56,7 @@ export const useGetTransaction = () => {
       return () => unsubscribe();
     };
     getTransactions();
-
-  }, []);
+  }, [transactionCollectionRef, userID]);
   
   return { transactions, transactionTotals };
 };
