@@ -112,11 +112,11 @@ body {
 }
 
 .income p {
-  color: #27ae60;
+  color: green;
 }
 
 .expenses p {
-  color: #e74c3c;
+  color: red;
 }
 
 .add-transaction {
@@ -165,7 +165,7 @@ body {
 .transactions {
   background-color: #ffffff;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   padding: 1.5rem;
   margin-top: 2rem;
 }
@@ -202,4 +202,10 @@ body {
   font-size: 1rem;
   color: #7f8c8d;
   margin: 0;
+}
+
+#transaction-type {
+  padding: 0.25rem;
+  font-size: 0.8rem;
+  color: #ffffff;
 }

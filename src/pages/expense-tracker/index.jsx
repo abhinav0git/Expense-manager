@@ -137,11 +137,11 @@ export const ExpenseTracker = () => {
                 return (
                   <li key={index}>
                     <h4>{description}</h4>
+                    <span style={{ color: transactionType === "expense" ? "#e74c3c" : "#27ae60" }} id="transaction-type">
+                      {transactionType}
+                    </span>
                     <p>
-                      ₹{transactionAmount}•{" "}
-                      <span style={{ color: transactionType === "expense" ? "#e74c3c" : "#27ae60" }}>
-                        {transactionType}
-                      </span>
+                      ₹{transactionAmount}{"  "}
                     </p>
                   </li>
                 );
