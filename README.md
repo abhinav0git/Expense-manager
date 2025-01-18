@@ -16,6 +16,7 @@ This is an Expense Tracker application built with React, Firebase DB, and Fireba
 - Clear all transaction.
 - Prevent -ve values as an Expense.
 - Filter tags for Transaction List (Expense only, Income only, basic sort).
+- A toast message for every trasnaction.
 
 ## Potential Feature to add (?)
 
