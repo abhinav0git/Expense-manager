@@ -29,7 +29,7 @@ This project was bootstrapped with Create React App.
 
 ## Installation
 
-1. Clone the repository:
+1. Clone the repository
 2. Install the dependencies:
    `npm install`
 3. Start the application
